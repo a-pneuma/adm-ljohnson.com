@@ -1,6 +1,6 @@
 baseURL = "https://ljohnson-adm.com/"
 locale = "en-us"
-title = "Landon Johnson | For the Love of Technology"
+title = "Landon Johnson"
 theme = "PaperMod"
 
 [params]

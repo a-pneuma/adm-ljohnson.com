@@ -27,22 +27,7 @@ a:hover, .entry-content a:hover {
   color: #e8b56a;
 }
 
-.stack-footer {
-  margin-top: 24px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  text-align: center;
+footer.footer {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
-  color: var(--secondary);
-  line-height: 1.8;
-}
-
-.stack-footer a {
-  color: var(--secondary);
-  text-decoration: underline;
-}
-
-.stack-footer a:hover {
-  color: #d99a3e;
 }

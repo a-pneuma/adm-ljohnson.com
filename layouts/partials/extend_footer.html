@@ -1,20 +1,22 @@
-<div class="stack-footer">
-  Built with Hugo · Served by Caddy on Debian 13 · <a href="https://github.com/a-pneuma/adm-ljohnson.com" target="_blank" rel="noopener">Source on GitHub</a>
-  <br>
-  <span id="uptime-counter">Calculating uptime…</span>
-</div>
-
 <script>
 (function() {
   var launchDate = new Date("2026-06-23T23:18:17Z");
+  var footer = document.querySelector("footer.footer");
+  if (footer) {
+    var span = document.createElement("span");
+    span.id = "uptime-counter";
+    span.style.marginLeft = "6px";
+    footer.appendChild(span);
+  }
   var el = document.getElementById("uptime-counter");
   function updateUptime() {
+    if (!el) return;
     var diffMs = new Date() - launchDate;
     var totalMinutes = Math.floor(diffMs / 60000);
     var days = Math.floor(totalMinutes / 1440);
     var hours = Math.floor((totalMinutes % 1440) / 60);
     var minutes = totalMinutes % 60;
-    el.textContent = "Up for " + days + "d " + hours + "h " + minutes + "m";
+    el.textContent = "· Up for " + days + "d " + hours + "h " + minutes + "m";
   }
   updateUptime();
   setInterval(updateUptime, 60000);

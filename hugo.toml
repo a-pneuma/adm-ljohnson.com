@@ -12,6 +12,9 @@ theme = "PaperMod"
   ShowToc = true
   defaultTheme = "dark"
 
+[params.footer]
+  text = "· Served by Caddy on Debian 13 · [Source on GitHub](https://github.com/a-pneuma/adm-ljohnson.com)"
+
 [params.assets]
   favicon = "/favicon.ico"
   favicon16x16 = "/favicon-16x16.png"

@@ -10,6 +10,12 @@ theme = "PaperMod"
   ShowPostNavLinks = true
   ShowCodeCopyButtons = true
   ShowToc = true
+  defaultTheme = "dark"
+
+[params.label]
+  text = "Landon Johnson"
+  icon = "/images/logo.svg"
+  iconHeight = 36
 
 [[menu.main]]
   name = "Posts"

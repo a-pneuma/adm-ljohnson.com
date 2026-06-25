@@ -1,0 +1,28 @@
+.dark {
+  --theme: rgb(30, 33, 37);
+  --entry: rgb(38, 41, 46);
+  --border: rgb(58, 62, 68);
+  --hljs-bg: rgb(33, 36, 40);
+}
+
+body, .post-meta, .entry-content {
+  font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .entry-header {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+}
+
+.post-meta, time, .nav a, #menu a {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  letter-spacing: 0.01em;
+}
+
+a, .entry-content a {
+  color: #d99a3e;
+}
+
+a:hover, .entry-content a:hover {
+  color: #e8b56a;
+}

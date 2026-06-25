@@ -3,17 +3,18 @@ date = '2026-06-24T04:10:04Z'
 title = 'Hello World'
 +++
 
-# Hello World
+## Hello
 
 I am creating a first draft to ensure the pipeline is working correctly
 
 **This line should be bold.**
 *This line should be italic.*
 
-### Header 3 
+## Header 2
 
-More body 
+More body.
 
-#### Header 4
+### Header 3
 
-a little more body 
+a little more body.
+even more body.

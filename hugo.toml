@@ -1,6 +1,6 @@
 baseURL = "https://ljohnson-adm.com/"
 locale = "en-us"
-title = "Landon Johnson | Sysadmin Extraordinaire"
+title = "Landon Johnson | For the Love of Technology"
 theme = "PaperMod"
 
 [params]
@@ -22,8 +22,8 @@ theme = "PaperMod"
   weight = 2
 
 [[menu.main]]
-  name = "Tags"
-  url = "/tags/"
+  name = "About"
+  url = "/about/"
   weight = 3
 
 [taxonomies]

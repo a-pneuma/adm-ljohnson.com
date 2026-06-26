@@ -74,3 +74,216 @@ footer.footer span:has(a[href*="hugo-PaperMod"]) {
   color: #4fb8a6;
   background-color: rgba(79, 184, 166, 0.1);
 }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.project-card {
+  display: block;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: #d99a3e;
+}
+
+.project-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.project-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.project-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.status-online {
+  background: rgba(79, 184, 166, 0.15);
+  color: #4fb8a6;
+}
+
+.status-archived {
+  background: rgba(138, 143, 150, 0.15);
+  color: #8a8f96;
+}
+
+.status-in-progress {
+  background: rgba(217, 154, 62, 0.15);
+  color: #d99a3e;
+}
+
+.project-summary {
+  font-size: 13px;
+  color: var(--secondary);
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stack-pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  background: var(--tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--secondary);
+}
+
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+}
+
+.cmdk-box {
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 560px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+.cmdk-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  background: var(--theme);
+  color: var(--primary);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+}
+
+.cmdk-results {
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.cmdk-result {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmdk-result:last-child {
+  border-bottom: none;
+}
+
+.cmdk-result.active, .cmdk-result:hover {
+  background: var(--entry);
+}
+
+.cmdk-result-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #d99a3e;
+}
+
+.cmdk-result-summary {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 2px;
+}
+
+.cmdk-empty {
+  padding: 16px;
+  font-size: 13px;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.cmdk-hint {
+  padding: 8px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--secondary);
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.03em;
+}
+
+.cmdk-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--secondary);
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.cmdk-trigger:hover {
+  border-color: #d99a3e;
+  color: var(--primary);
+}
+
+.cmdk-trigger-key {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  background: var(--tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 5px;
+  color: var(--secondary);
+}
+
+@media (max-width: 600px) {
+  .cmdk-trigger-text, .cmdk-trigger-key {
+    display: none;
+  }
+  .cmdk-trigger {
+    bottom: 12px;
+    right: 12px;
+    padding: 10px;
+  }
+}

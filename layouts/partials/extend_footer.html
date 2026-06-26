@@ -22,3 +22,136 @@
   setInterval(updateUptime, 60000);
 })();
 </script>
+
+<button id="cmdk-trigger" class="cmdk-trigger" aria-label="Open search">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+  <span class="cmdk-trigger-text">Search</span>
+  <kbd id="cmdk-trigger-key" class="cmdk-trigger-key">⌘K</kbd>
+</button>
+
+<div id="cmdk-overlay" class="cmdk-overlay" style="display:none;">
+  <div class="cmdk-box">
+    <input id="cmdk-input" class="cmdk-input" type="text" placeholder="Search posts and projects…" autocomplete="off">
+    <div id="cmdk-results" class="cmdk-results"></div>
+    <div class="cmdk-hint">&uarr;&darr; to navigate &middot; Enter to open &middot; Esc to close</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var overlay = document.getElementById("cmdk-overlay");
+  var input = document.getElementById("cmdk-input");
+  var results = document.getElementById("cmdk-results");
+  var fuse = null;
+  var items = [];
+  var activeIndex = -1;
+
+  function loadFuse(callback) {
+    if (window.Fuse) { callback(); return; }
+    var script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+
+  function loadIndex(callback) {
+    if (items.length) { callback(); return; }
+    fetch("/index.json")
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        items = data;
+        fuse = new Fuse(items, {
+          keys: ["title", "summary", "content"],
+          threshold: 0.35,
+          minMatchCharLength: 2
+        });
+        callback();
+      });
+  }
+
+  function openPalette() {
+    overlay.style.display = "flex";
+    input.value = "";
+    renderResults([]);
+    activeIndex = -1;
+    loadFuse(function() {
+      loadIndex(function() {
+        input.focus();
+      });
+    });
+  }
+
+  function closePalette() {
+    overlay.style.display = "none";
+  }
+
+  function renderResults(list) {
+    results.innerHTML = "";
+    if (input.value.trim() && list.length === 0) {
+      results.innerHTML = '<div class="cmdk-empty">No results</div>';
+      return;
+    }
+    list.slice(0, 8).forEach(function(item, i) {
+      var a = document.createElement("a");
+      a.href = item.permalink;
+      a.className = "cmdk-result";
+      if (i === activeIndex) a.classList.add("active");
+      a.innerHTML = '<div class="cmdk-result-title">' + item.title + '</div>' +
+                    '<div class="cmdk-result-summary">' + (item.summary || "").slice(0, 100) + '</div>';
+      results.appendChild(a);
+    });
+  }
+
+  input.addEventListener("input", function() {
+    activeIndex = -1;
+    if (!fuse || !input.value.trim()) {
+      renderResults([]);
+      return;
+    }
+    var matches = fuse.search(input.value).map(function(r) { return r.item; });
+    renderResults(matches);
+  });
+
+  input.addEventListener("keydown", function(e) {
+    var rows = results.querySelectorAll(".cmdk-result");
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      activeIndex = Math.min(activeIndex + 1, rows.length - 1);
+      rows.forEach(function(r, i) { r.classList.toggle("active", i === activeIndex); });
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      activeIndex = Math.max(activeIndex - 1, 0);
+      rows.forEach(function(r, i) { r.classList.toggle("active", i === activeIndex); });
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      var target = rows[activeIndex] || rows[0];
+      if (target) window.location.href = target.href;
+    } else if (e.key === "Escape") {
+      closePalette();
+    }
+  });
+
+  document.addEventListener("keydown", function(e) {
+    var isK = e.key === "k" || e.key === "K";
+    if ((e.metaKey || e.ctrlKey) && isK) {
+      e.preventDefault();
+      if (overlay.style.display === "flex") {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    } else if (e.key === "Escape" && overlay.style.display === "flex") {
+      closePalette();
+    }
+  });
+
+  overlay.addEventListener("click", function(e) {
+    if (e.target === overlay) closePalette();
+  });
+  document.getElementById("cmdk-trigger-key").textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘K" : "Ctrl K";
+  document.getElementById("cmdk-trigger").addEventListener("click", openPalette);
+})();
+</script>

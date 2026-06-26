@@ -12,6 +12,9 @@ theme = "PaperMod"
   ShowToc = true
   defaultTheme = "dark"
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [markup]
   [markup.highlight]
     noClasses = false

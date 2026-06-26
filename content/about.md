@@ -4,7 +4,7 @@ title: "About"
 
 I'm Landon, a Systems Administrator and Engineer who spends most of my time keeping
 infrastructure running, secure, and well-documented, and the rest of it tinkering with
-technology nobody's paying me to touch... just pure love of *the game*. 
+technology nobody's paying me to touch... just pure love of *the game*.
 
 ## What I Do
 

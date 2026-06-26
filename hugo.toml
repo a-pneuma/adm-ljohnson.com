@@ -11,6 +11,7 @@ theme = "PaperMod"
   ShowCodeCopyButtons = true
   ShowToc = true
   defaultTheme = "dark"
+  disableSpecial1stPost = true
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

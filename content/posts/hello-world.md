@@ -24,5 +24,4 @@ even more body.
 # check disk usage
 if [ -d "/var/log" ]; then
     du -sh /var/log/*.log 2>&1 | sort -h
-fi
-```
+fi```

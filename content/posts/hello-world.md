@@ -18,3 +18,11 @@ More body.
 
 a little more body.
 even more body.
+
+
+```bash
+# check disk usage
+if [ -d "/var/log" ]; then
+    du -sh /var/log/*.log 2>&1 | sort -h
+fi
+```

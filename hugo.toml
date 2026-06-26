@@ -12,6 +12,10 @@ theme = "PaperMod"
   ShowToc = true
   defaultTheme = "dark"
 
+[markup]
+  [markup.highlight]
+    noClasses = false
+
 [params.footer]
   text = "· Served by Caddy on Debian 13 · [Source on GitHub](https://github.com/a-pneuma/adm-ljohnson.com)"
 

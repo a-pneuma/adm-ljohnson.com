@@ -35,3 +35,42 @@ footer.footer {
 footer.footer span:has(a[href*="hugo-PaperMod"]) {
   display: none;
 }
+
+.chroma {
+  color: #c8ccd1;
+}
+
+.chroma .c, .chroma .c1, .chroma .cm, .chroma .cp, .chroma .ch, .chroma .cs {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt,
+.chroma .nt, .chroma .ow {
+  color: #d99a3e;
+  font-weight: 600;
+}
+
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sa, .chroma .sb, .chroma .sc,
+.chroma .se, .chroma .si, .chroma .sx, .chroma .sr, .chroma .ss, .chroma .dl,
+.chroma .m, .chroma .mi, .chroma .mf, .chroma .mh, .chroma .mo, .chroma .il {
+  color: #4fb8a6;
+}
+
+.chroma .nf, .chroma .nc, .chroma .nd {
+  color: #e8b56a;
+}
+
+.chroma .err {
+  color: #e35d5d;
+}
+
+.chroma .gd {
+  color: #e35d5d;
+  background-color: rgba(227, 93, 93, 0.1);
+}
+
+.chroma .gi {
+  color: #4fb8a6;
+  background-color: rgba(79, 184, 166, 0.1);
+}

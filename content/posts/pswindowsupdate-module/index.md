@@ -94,12 +94,12 @@ It is very common that this will fail *(like mine above)* due to many Windows Up
 
 ## Wrapping Up
 
-One of the parameters I did not mention above that I use all of the time is the **-NoReboot** parameter. I usually include this parameter alongside `Install-WindowsUpdate -AcceptAll` when troubleshooting a device in shich I do not want to interupt the user. The `-NoReboot` parameter tells the module to **NOT** reboot the computer once the updates have finished installing. I then normally schedule the reboot later that night, once the user has left, or tell the user to reboot at their earliest convenience.
+One of the parameters I did not mention above that I use all of the time is the **-IgnoreReboot** parameter. I usually include this parameter alongside `Install-WindowsUpdate -AcceptAll` when troubleshooting a device in shich I do not want to interupt the user. The `-IgnoreReboot` parameter tells the module to **NOT** reboot the computer once the updates have finished installing. I then normally schedule the reboot later that night, once the user has left, or tell the user to reboot at their earliest convenience.
 
 So, the full command I commonly use to troubleshoot computers **with active users** is:
 
 ```powershell
-Install-WindowsUpdate -AcceptAll -NoReboot
+Install-WindowsUpdate -AcceptAll -IgnoreReboot
 ```
 
 Of course, the user's computer **must have** the PSWindowsUpdate PowerShell Module installed, but again this is easily done remotely without disturbing them via Remote PowerShell or an RMM tool.

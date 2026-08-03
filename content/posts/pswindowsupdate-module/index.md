@@ -84,7 +84,7 @@ Run the **Install-WindowsUpdate** cmdlet with the **-KBArticleID** parameter, fo
 
 ### Uninstalling Specific Updates
 
-Run the **Uninstall-WindowsUpdate** cmdlet with the **-KBArticleID** parameter, followed by the `KB Article ID`. Below you will see me run the `Get-WUHistory` cmdlet to see what updates have been installed, then target that KB to uninstall `KB2267602`. 
+Run the **Uninstall-WindowsUpdate** cmdlet with the **-KBArticleID** parameter, followed by the `KB Article ID`. Below you will see me run the `Get-WUHistory` cmdlet to see what updates have been installed, then target that KB to uninstall `KB2267602`.
 
 {{< figure src="10-Uninstall-KBArticleID.png" alt="Run Uninstall-WindowsUpdate -KBArticleID" >}}
 
@@ -97,6 +97,7 @@ It is very common that this will fail *(like mine above)* due to many Windows Up
 One of the parameters I did not mention above that I use all of the time is the **-NoReboot** parameter. I usually include this parameter alongside `Install-WindowsUpdate -AcceptAll` when troubleshooting a device in shich I do not want to interupt the user. The `-NoReboot` parameter tells the module to **NOT** reboot the computer once the updates have finished installing. I then normally schedule the reboot later that night, once the user has left, or tell the user to reboot at their earliest convenience.
 
 So, the full command I commonly use to troubleshoot computers **with active users** is:
+
 ```powershell
 Install-WindowsUpdate -AcceptAll -NoReboot
 ```
@@ -110,4 +111,4 @@ There you go! You now have the capabilities to use the PSWindowsUpdate module! T
 - [AskMe4Tech](https://askme4tech.com/how-manage-windows-updates-using-powershell)
 - [WindowsOSHub](https://woshub.com/pswindowsupdate-module/)
 
-### Happy Scripting!
+### Happy Scripting :)

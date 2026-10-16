@@ -1,0 +1,36 @@
+<style>
+.post-content .scrollshot { margin: 2rem 0; }
+.scrollshot-window {
+  max-height: min(600px, 65vh); overflow-y: auto;
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--entry); scrollbar-gutter: stable;
+}
+.scrollshot-window:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.post-content .scrollshot-window img { display:block; width:100%; height:auto; margin:0; border-radius:0; }
+.post-content .scrollshot figcaption {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:.35rem 1rem;
+  margin-top:.75rem; color:var(--secondary); font-size:.85rem; text-align:center;
+}
+.scrollshot-placeholder { padding:1.5rem; border:1px dashed var(--border); border-radius:12px; color:var(--secondary); }
+</style>
+{{- $src := .Get "src" -}}
+{{- $id := printf "scrollshot-%d" .Ordinal -}}
+{{- with .Page.Resources.GetMatch $src -}}
+<figure class="scrollshot">
+  <div class="scrollshot-window" tabindex="0" role="region"
+       aria-label="{{ $.Get "alt" | default "Scrollable website screenshot" }}" aria-describedby="{{ $id }}">
+    <img src="{{ .RelPermalink }}" alt="{{ $.Get "alt" }}"
+         width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+  </div>
+  <figcaption id="{{ $id }}">
+    <span>{{ $.Get "caption" | default "Scroll inside the image to explore the page." }}</span>
+    <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">Open full image ↗</a>
+  </figcaption>
+</figure>
+{{- else -}}
+  {{- if .Page.Draft -}}
+  <div class="scrollshot-placeholder">Screenshot pending: add <code>{{ $src }}</code> beside this article’s index.md.</div>
+  {{- else -}}
+    {{- errorf "Missing scrollshot image %q on %s" $src .Page.RelPermalink -}}
+  {{- end -}}
+{{- end -}}

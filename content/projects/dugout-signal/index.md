@@ -1,7 +1,7 @@
 ---
 title: "Dugout Signal: Building a Baseball Site I Actually Wanted to Use"
 date: 2026-10-16T12:00:00-07:00
-draft: true
+draft: false
 status: "Online"
 stack: ["Ruby on Rails", "PostgreSQL", "Docker", "Debian", "Cloudflare Tunnel"]
 summary: "From a Debian VM in my Proxmox homelab to a public baseball application: designing Dugout Signal, working with MLB data, and building the infrastructure to keep it running."
@@ -19,13 +19,7 @@ That became [Dugout Signal](https://dugoutsignal.com).
 
 What started as a baseball website on a Debian VM in my homelab grew into a project that brought together product design, application development, data integration, authentication, and production infrastructure. Getting the page to load was the beginning. Making it useful, understandable, and recoverable took considerably more thought.
 
-<!-- IMAGE 01 — HERO
-Add overview.webp beside this file, then uncomment the Markdown image below.
-Capture the public homepage at desktop width. Include the navigation and the
-main game content; crop browser chrome and any account information.
-![Dugout Signal's dark homepage, with today's matchups and clear paths into team and player information.](overview.webp)
-*The goal: understand the day's baseball at a glance, then choose where to go deeper.*
--->
+{{< scrollshot src="homepage-full.png" alt="Dugout Signal homepage showing daily matchups and game information." >}}
 
 ## The idea: make the numbers mean something
 
@@ -49,12 +43,7 @@ Team pages introduce the people worth paying attention to. **Aces**, **Bats to k
 
 Player pages connect season and career statistics with recent performances, splits, and photos. For pitchers, the pitch repertoire is visible by default. Knowing what someone throws is basic context for watching them pitch; it shouldn't be buried behind an obscure control.
 
-<!-- IMAGE 02 — MATCHUP
-Add matchup.webp, then uncomment.
-Choose a matchup with populated comparison bars and readable explanations.
-![A game matchup comparison showing centered labels and bars indicating each team's statistical advantage.](matchup.webp)
-*The number matters, but so does explaining which direction is better and what it tells you.*
--->
+{{< scrollshot src="matchup.png" alt="Tampa Bay Rays and Cleveland Guardians game preview with starting pitchers, bullpen workload, and statistical comparison bars." caption="Scroll through the matchup: pitchers, bullpen workload, and the numbers behind each edge." >}}
 
 The statistics page has preset leaderboards, essential and advanced views, sorting, and CSV/Excel exports. I also added a baseball guide so unfamiliar terminology has a home beyond a tooltip.
 
@@ -76,14 +65,17 @@ Those were layout and hierarchy problems. Adding another feature wouldn't fix th
 
 I also removed ideas that didn't earn their space. A series simulator that merely demonstrated that adding a win changes the series result wasn't offering enough insight. Neither was a large watch queue that displaced more useful information on the homepage.
 
-<!-- IMAGE 03 — PLAYER PROFILE
-Add pitcher-profile.webp, then uncomment.
-Capture the player header and expanded pitch repertoire in one readable frame.
-![A pitcher profile showing headline statistics and an expanded pitch repertoire with usage and velocity information.](pitcher-profile.webp)
-*Important context appears first; deeper analysis stays within reach.*
--->
+{{< scrollshot src="pitcher-profile.png" alt="Eduardo Rodriguez player profile with season statistics, pitch repertoire, and recent performance." caption="Scroll through the player profile to see pitch types, usage, velocity, and season context." >}}
 
 I used OpenAI Codex as a development partner throughout the project, helping with implementation, debugging, research, and deployment work. My role was setting the direction, testing the experience, challenging the results, and deciding what belonged in the product. That process involved a lot of screenshots and very specific feedback about what felt confusing, redundant, or visually wrong.
+
+### Making bullpen workload visible
+
+Recent pitch counts and rest are easier to understand when they are shown together. The bullpen view places both teams side by side, with each pitcher's recent workload visible without opening several player pages. These are workload estimates, not confirmation that a pitcher is available.
+
+[![Bullpen readiness for Tampa Bay and Cleveland, showing recent pitch counts and rest for six relievers.](bullpen-readiness.png)](bullpen-readiness.png)
+
+*Recent pitches and rest at a glance. Open the image to inspect the details.*
 
 ## The application stack
 
